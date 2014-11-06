@@ -50,14 +50,17 @@
             
             this.callbacks();
             
-            // setTimeout(function() { add.random(); }, 0);
-            // setTimeout(function() { add.random(); }, 100);
-            // setTimeout(function() { add.random(); }, 500);
-            // setTimeout(function() { add.random(); }, 700);
-            // setTimeout(function() { add.random(); }, 1000);
-
-            // setTimeout(function() { for (var i=0; i<100; i++) {add.random();} }, 1000);
-            for (var i=0; i<100; i++) {add.random();}
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 0);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 200);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 400);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 600);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 800);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 1000);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 1200);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 1400);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 1600);
+            setTimeout(function() { for (var i=0; i<20; i++) {add.random();} }, 1800);
+            
             
             // On my signal: Unleash hell.
             (function hell() {
@@ -79,41 +82,46 @@
         },
         surroundings: {
             rightWall: function() {
+                //Original box: 740 x 380
+                //Our box: 200 x 800
                 add.box({
-                    x: 25.7,        // 740 / 30 + 1.1
-                    y:  6.3,        // 380px / 30 / 2
-                    height: 12.6,   // 380px / 30
-                    width:2,
+                    // x: 25.7,        // 740 / 30 + 1.1
+                    // y:  6.3,        // 380px / 30 / 2
+                    // height: 12.6,   // 380px / 30
+                    x: 7.76,        // 200px / 30 + 1.1
+                    y:  13.3,        // 800px / 30 / 2
+                    height: 28.7,   // 800px / 30
+                    width: 2.05,
                     isStatic: true
                 });
             },
             ground: function() {
                 add.box({
-                    x: 12.3,        // 740 / 30 / 2
-                    y:  13.7,
-                    height: 2,
-                    width:24.6,     // 740 / 30
+                    // x: 12.3,        // 740 / 30 / 2
+                    // y:  13.7,
+                    // height: 2,
+                    // width:24.6,     // 740 / 30
+                    x: 3.3,        // 200 / 30 / 2
+                    y:  27.2,
+                    height: 1,
+                    width:7,     // 200 / 30
                     isStatic: true
                 });
             },
             leftWall: function() {
                 add.box({
                     x: -1,
-                    y:  6.3,        // 380px / 30 / 2
-                    height: 12.6,   // 380px / 30
+                    // y:  6.3,        // 380px / 30 / 2
+                    // height: 12.6,   // 380px / 30
+                    y:  13.3,        // 800px / 30 / 2
+                    height: 28.7,   // 800px / 30
                     width:2,
                     isStatic: true
                 });
             }
         },
         callbacks: function() {
-            canvas.addEventListener('click', function(e) {
-                var shapeOptions = {
-                    x: (canvas.width / SCALE) * (e.offsetX / canvas.width),
-                    y: 0
-                };
-                add.random(shapeOptions);
-            }, false);
+
         }
     };        
      
@@ -129,7 +137,7 @@
             this.circle(options)
         },
         circle: function(options) {
-            options.radius = (Math.floor(Math.random() * 6) + 2) * 0.1;
+            options.radius = (Math.floor(Math.random() * 4) + 2) * 0.1;
             var shape = new Circle(options);
             shapes[shape.id] = shape;
             box2d.addToWorld(shape);
@@ -158,8 +166,8 @@
         create: {
             world: function() {
                 world = new b2World(
-                    new b2Vec2(0, 10)    //gravity
-                    , false                 //allow sleep
+                    new b2Vec2(0,30)    //gravity
+                    ,true                 //allow sleep
                 );
                 
                 if (debug) {
@@ -174,9 +182,9 @@
             },
             defaultFixture: function() {
                 fixDef = new b2FixtureDef;
-                fixDef.density = 1.0;
-                fixDef.friction = 0.5;
-                fixDef.restitution = 0.2;
+                fixDef.density = 6.0;
+                fixDef.friction = 10;
+                fixDef.restitution = 0.6;
             },
             bodyDef: function(shape) {
                 var bodyDef = new b2BodyDef;
@@ -234,12 +242,12 @@
     
     var helpers = {
         randomColor: function() {
-            var letters = '0123456789ABCDEF'.split(''),
-                color = '#';
-            for (var i = 0; i < 6; i++ ) {
-                color += letters[Math.round(Math.random() * 15)];
-            }
-            return color;//'#'+(~~(Math.random()*(1<<24))).toString(16);
+            // var letters = '0123456789ABCDEF'.split(''),
+            //     color = '#';
+            // for (var i = 0; i < 6; i++ ) {
+            //     color += letters[Math.round(Math.random() * 15)];
+            // }
+            return '#ffffff';//'#'+(~~(Math.random()*(1<<24))).toString(16);
         }
     };
     
@@ -247,7 +255,7 @@
     
     var Shape = function(v) {
         this.id = Math.round(Math.random() * 1000000);
-        this.x = v.x || Math.random()*23 + 1;
+        this.x = v.x || 2;
         this.y = v.y || 0;
         this.angle = 0;
         this.color = helpers.randomColor();
@@ -272,10 +280,12 @@
             ctx.rotate(this.angle);
             ctx.translate(-(this.x) * SCALE, -(this.y) * SCALE);
             ctx.fillStyle = this.color;
+            ctx.strokeStyle = '#2f6593';
             ctx.beginPath();
             ctx.arc(this.x * SCALE, this.y * SCALE, this.radius * SCALE, 0, Math.PI * 2, true);
             ctx.closePath();
             ctx.fill();
+            ctx.stroke()
             ctx.restore();
         };
     };
@@ -304,4 +314,5 @@
     Box.prototype = Shape;
     
     init.start('box2d-demo');
+
 })();
