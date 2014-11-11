@@ -19,6 +19,9 @@ section {
 	width: 960px;
 	padding: 0 10px;
 }
+canvas:first-child {
+	margin-right: 50px;
+}
 div {
 	width: 50%;
 	margin: 0;

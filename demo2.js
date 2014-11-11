@@ -51,9 +51,8 @@ function initCit() {
                 var i = 0;
                 var total = JSON.parse(localStorage.getItem('year_viz'));
                     total = total.count_cit / 200000;
-
                 setTimeout(function() { 
-                    for (i; i < total/50; i++) {
+                    for (i; i < total/10; i++) {
                         var options = {};
                         if (Date.now() % 2 == 0)
                             options.radius = 0.601;
@@ -62,7 +61,7 @@ function initCit() {
                         add.random(options);
                     }
                 }, 0);
-                setTimeout(function() { for (i; i < total - (total/50)*2; i++) {
+                setTimeout(function() { for (i; i < total - (total/10)*2; i++) {
                     var options = {};
                     if (Date.now() % 2 == 0)
                         options.radius = 0.6;
@@ -70,23 +69,14 @@ function initCit() {
                         options.radius = 0.5;
                     add.random(options);
                 }}, 200);
-                setTimeout(function() { for (i; i < total - (total/50)*3; i++) {
+                setTimeout(function() { for (i; i < total - (total/10)*3; i++) {
                     var options = {};
                     if (Date.now() % 2 == 0)
                         options.radius = 0.6;
                     else
                         options.radius = 0.5;
                     add.random(options);
-                }}, 600);
-                setTimeout(function() { for (i; i < total - (total/50)*4; i++) {
-                    var options = {};
-                    if (Date.now() % 2 == 0)
-                        options.radius = 0.6;
-                    else
-                        options.radius = 0.5;
-                    add.random(options);
-                
-                }}, 1000);
+                }}, 400);
                 // On my signal: Unleash hell.
                 (function hell() {
                     loop.step();
@@ -260,7 +250,7 @@ function initCit() {
         
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
-            this.x = v.x || 2;
+            this.x = v.x || 0.5;
             this.y = v.y || 0;
             this.angle = 0;
             this.color = helpers.randomColor();
@@ -284,11 +274,7 @@ function initCit() {
                 ctx.translate(this.x * SCALE, this.y * SCALE);
                 ctx.translate(-(this.x) * SCALE, -(this.y) * SCALE);
                 ctx.strokeStyle = '#2f6593';
-                var grd = ctx.createLinearGradient(1000, 0, canvas.width, canvas.height);
-                grd.addColorStop(0, 'transparent');   
-                grd.addColorStop(0.3, 'rgba(255,255,255,0.7)');
-                grd.addColorStop(1, '#ffffff');
-                ctx.fillStyle = grd;
+                ctx.fillStyle = '#ffffff';
                 ctx.beginPath();
                 ctx.arc(this.x * SCALE, this.y * SCALE, this.radius * SCALE, 0, Math.PI * 2, true);
                 ctx.closePath();
