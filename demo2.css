@@ -23,6 +23,9 @@ section {
 canvas:first-child {
 	margin-right: 50px;
 }
+div:last-child {
+	text-align: right;
+}
 div {
 	width: 50%;
 	margin: 0;
