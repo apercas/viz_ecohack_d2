@@ -21,6 +21,7 @@
             <li></li>
             <li></li>
             <li></li>
+            <li></li>
             <li class="selected"></li>
          </ul>
       </div>
@@ -28,19 +29,94 @@
    		<canvas id="box2d-demo" width="202" height="801" style="background-color:transparent;"></canvas>
    		<canvas id="box2d-demo2" width="202" height="801" style="background-color:transparent;"></canvas>
       </div>
-	</section>
-	<script src="Box2dWeb-2.1.a.3.min.js"></script>
+   </section>
+   <script src="Box2dWeb-2.1.a.3.min.js"></script>
 	<script src="demo2.js"></script>
 	<script src="demo2_.js"></script>
-   <script src="js/jquery-2.1.1.min.js"></script>
    <script type="text/javascript">
-      var list    = document.getElementById('years');
-      var canvas  = document.getElementsByTagName('canvas');
+      
+      
+      window.data_orig = [
+                    {
+                      "year":2000,
+                      "count_cit":1271093,
+                      "count_pro":3207570
+                    },
+                    {
+                      "year":2001,
+                      "count_cit":1429905,
+                      "count_pro":3192843
+                    },
+                    {
+                      "year":2002,
+                      "count_cit":1779530,
+                      "count_pro":2784304
+                    },
+                    {
+                      "year":2003,
+                      "count_cit":2315200,
+                      "count_pro":2867324
+                    },
+                    {
+                      "year":2004,
+                      "count_cit":2851783,
+                      "count_pro":3054253
+                    },
+                    {
+                      "year":2005,
+                      "count_cit":3317581,
+                      "count_pro":3821678
+                    },
+                    {
+                      "year":2006,
+                      "count_cit":5016138,
+                      "count_pro":4347328
+                    },
+                    {
+                      "year":2007,
+                      "count_cit":6578331,
+                      "count_pro":6997602
+                    },
+                    {
+                      "year":2008,
+                      "count_cit":8153254,
+                      "count_pro":5823251
+                    },
+                    {
+                      "year":2009,
+                      "count_cit":11169250,
+                      "count_pro":6865211
+                    },
+                    {
+                      "year":2010,
+                      "count_cit":15127664,
+                      "count_pro":6279953
+                    },
+                    {
+                      "year":2011,
+                      "count_cit":19397264,
+                      "count_pro":6439256
+                    },
+                    {
+                      "year":2012,
+                      "count_cit":27352233,
+                      "count_pro":6209120
+                    },
+                    {
+                      "year":2013,
+                      "count_cit":35491610,
+                      "count_pro":4384066
+                    }
+                  ];
+      localStorage.setItem('year_viz', JSON.stringify(window.data_orig[window.data_orig.length - 1]));
+      var list     = document.getElementById('years');
+      var canva    = document.getElementsByTagName('canvas');
       list.onclick = function(e) {changeYear(e);}
 
       var changeYear = function(e) {
          toggleSelected(e);
-         clearCanvas();
+         updateLocalYear();
+         run();
       }
 
       var toggleSelected = function(e) {
@@ -48,16 +124,16 @@
          for (var i = 0; i < list.children.length; i++)  list.children[i].classList.remove('selected')
          e.target.classList.toggle('selected');
       }
-      var clearCanvas = function() {
-         for(var i = 0; i < canvas.length; i++) {
-            ele = canvas[i];
-            ctx = ele.getContext("2d");
-            ctx.save();
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.restore();
-         }
+      var run = function() {
+         initPro();
+         initCit();
       }
+      var updateLocalYear = function(e) {
+         var pos = Array.prototype.indexOf.call(list.children,document.getElementsByClassName('selected')[0]);
+         localStorage.setItem('year_viz', JSON.stringify(window.data_orig[pos]));
+      }
+
+      run();
    </script>
 </body>
 </html>

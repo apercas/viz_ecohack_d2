@@ -11,7 +11,7 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#25577f', endColorstr='#2b6fa8',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 	color: #fff;
 	font-family: helvetica, arial, sans-serif;
-	counter-reset: year 2000;
+	counter-reset: year 1999;
 }
 
 section {
@@ -47,7 +47,7 @@ ul li {
 	border-radius: 20px;
 	float:left;
 	border: 1px solid rgba(255,255,255,0.4);
-	margin-right: 20px;
+	margin-right: 17px;
 	cursor: pointer;
 }
 ul li:last-child {
