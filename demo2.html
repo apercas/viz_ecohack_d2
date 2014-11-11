@@ -8,21 +8,21 @@
       <div>
          <h1>hobbies becoming into science</h1>
          <p>Lorem ipsum dolor sit amet, mei regione sanctus ei, scripta delectus invidunt eos ut. Recusabo instructior mei et, nibh causae animal ei cum, no exerci fierent delectus ius. Justo vulputate quo ut, harum admodum liberavisse ea mei. Omittam intellegat sadipscing mea ut, alterum mentitum ei eam, ea eum patrioque sententiae. At tota minim minimum vim.</p>
-         <nav>
-            <span class="selected"></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-         </nav>
+         <ul id="years">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="selected"></li>
+         </ul>
       </div>
       <div>
    		<canvas id="box2d-demo" width="202" height="801" style="background-color:transparent;"></canvas>
@@ -32,6 +32,33 @@
 	<script src="Box2dWeb-2.1.a.3.min.js"></script>
 	<script src="demo2.js"></script>
 	<script src="demo2_.js"></script>
+   <script src="js/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript">
+      var list    = document.getElementById('years');
+      var canvas  = document.getElementsByTagName('canvas');
+      list.onclick = function(e) {changeYear(e);}
+
+      var changeYear = function(e) {
+         toggleSelected(e);
+         clearCanvas();
+      }
+
+      var toggleSelected = function(e) {
+         if (e.target.classList.contains('selected')) return false;
+         for (var i = 0; i < list.children.length; i++)  list.children[i].classList.remove('selected')
+         e.target.classList.toggle('selected');
+      }
+      var clearCanvas = function() {
+         for(var i = 0; i < canvas.length; i++) {
+            ele = canvas[i];
+            ctx = ele.getContext("2d");
+            ctx.save();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.restore();
+         }
+      }
+   </script>
 </body>
 </html>
 

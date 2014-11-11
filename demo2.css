@@ -36,63 +36,79 @@ p {
 	font-size: 20px;
 	line-height: 25px;
 }
-
-nav span {
+ul {
+	margin: 3em 0 0 0;
+	padding: 0;
+}
+ul li {
+	display: inline;
 	width: 15px;
 	height: 15px;
 	border-radius: 20px;
 	float:left;
 	border: 1px solid rgba(255,255,255,0.4);
-	margin-right: 21px;
+	margin-right: 20px;
 	cursor: pointer;
 }
-nav span:last-child {
+ul li:last-child {
 	margin-right: 0px;
 }
-nav span.selected {
+ul li.selected {
 	background: rgba(255,255,255,0.9);
 }
-nav span:before,
-nav span:after {
-	opacity: 0;
-	position: relative;
-	color: rgb(24,81,128);
+ul li.selected:after {
+	padding: 5px;
+	content: counter(year);
 	background: white;
-	left: -17px;
+	color: rgb(24,81,128);
+	top: 15px;
+	position: relative;
+	left: -24px;
+	width: 50px;
+	float: left;
+	text-align: center;
 	font-size: large;
 	font-weight: bold;
 }
-nav span:before {
-	padding: 5px;
-	top: 30px;
-	counter-increment: year; 
-	content: counter(year);
-}
-nav span:after {
-	height: 10px;
-	width: 10px;
-	float: left;
+ul li.selected:before {
+	height: 5px;
+	width: 5px;
 	content: '';
-	left: 2px;
+	float: left;
 	-webkit-transform: rotate(45deg);
 	-moz-transform:    rotate(45deg);
 	-ms-transform:     rotate(45deg);
 	-o-transform:      rotate(45deg);
 	transform:         rotate(45deg);
+	background: white;
+	opacity: 1;
+	top: 23px;
+	left: 0px;
 }
-nav span:hover {
+ul li:before {
+	opacity: 0;
+	position: relative;
+	color: rgba(255,255,255,0.5);
+	left: -15px;
+	font-weight: 100;
+	padding: 5px;
+	top: -25px;
+	counter-increment: year; 
+	content: counter(year);
+}
+
+ul li:hover {
 	border: 1px solid rgba(255,255,255,1);
 	
-	-webkit-transition: border-color 1s ease; 250ms ease-in-out 50ms;
-	-moz-transition: border-color 1s ease; 250ms ease-in-out 50ms;
-	-o-transition: border-color 1s ease; 250ms ease-in-out 50ms;
-	transition: border-color 1s ease; 250ms ease-in-out 50ms;  
+	-webkit-transition: border-color 500ms ease-in-out 50ms;
+	-moz-transition: border-color 500ms ease-in-out 50ms;
+	-o-transition: border-color 500ms ease-in-out 50ms;
+	transition: border-color 500ms ease-in-out 50ms;  
 }
-nav span:hover::before,
-nav span:hover::after{
+ul li:hover::before {
 	opacity: 1;
-	-webkit-transition: opacity 250ms ease-in-out 50ms;
-	-moz-transition: opacity 250ms ease-in-out 50ms;
-	-o-transition: opacity 250ms ease-in-out 50ms;
-	transition: opacity 250ms ease-in-out 50ms;
+	-webkit-transition: opacity 500ms ease-in-out 50ms;
+	-moz-transition: opacity 500ms ease-in-out 50ms;
+	-o-transition: opacity 500ms ease-in-out 50ms;
+	transition: opacity 500ms ease-in-out 50ms;
 }
