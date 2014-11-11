@@ -12,6 +12,7 @@ body {
 	color: #fff;
 	font-family: helvetica, arial, sans-serif;
 	counter-reset: year 1999;
+	margin: 0;
 }
 
 section {
