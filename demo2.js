@@ -262,7 +262,7 @@ function initCit() {
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
             this.x = v.x || Math.floor(Math.random() * 4) + 1;
-            this.y = v.y || (Math.random() + Math.random())/2;
+            this.y = v.y || Math.random();
             this.rotate = v.rotate || 0;
             this.angle = 0;
             // this.color = helpers.randomColor();

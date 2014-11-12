@@ -150,8 +150,11 @@ function initPro() {
          
         var add = {
             random: function(options) {
-                options = options || {};
-                this.circle(options)
+                var self = this;
+                setTimeout(function(){
+                    options = options || {};
+                    self.circle(options);
+                },500); 
             },
             circle: function(options) {
                 var shape = new Circle(options);
@@ -262,7 +265,7 @@ function initPro() {
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
             this.x = v.x || Math.floor(Math.random() * 4) + 1;
-            this.y = v.y || (Math.random() + Math.random())/2;
+            this.y = v.y || Math.random();
             this.rotate = v.rotate || 0;
             this.angle = 0;
             // this.color = helpers.randomColor();
@@ -310,6 +313,6 @@ function initPro() {
         };
         Box.prototype = Shape;
         
-        setTimeout(function(){init.start('box2d-demo2');},300);
+        init.start('box2d-demo2');
     })();
 }
