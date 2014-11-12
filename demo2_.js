@@ -76,7 +76,7 @@ function initPro() {
                                 options.radius = 0.58;
                             add.random(options);
                     }
-                }, 500);
+                }, 250);
                 // On my signal: Unleash hell.
                 (function hell() {
                     loop.step();
@@ -255,8 +255,8 @@ function initPro() {
         
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
-            this.x = v.x || Math.floor(Math.random() * 4) + 1;
-            this.y = v.y || Math.random();
+            this.x = v.x || Math.random();
+            this.y = v.y || this.x;
             this.rotate = v.rotate || 0;
             this.angle = 0;
             // this.color = helpers.randomColor();

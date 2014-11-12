@@ -49,7 +49,9 @@ function initCit() {
                 this.callbacks();
 
                 var i = 0;
+                var timeout = 150;
                 var total = JSON.parse(localStorage.getItem('year_viz'));
+                    timeout  = (total.year > 2010)? 650 : timeout;
                     total = total.count_cit / 80000;
                 setTimeout(function() { 
                     for (i; i < total/5; i++) {
@@ -76,7 +78,7 @@ function initCit() {
                                 options.radius = 0.58;
                             add.random(options);
                     }
-                }, 800);
+                }, timeout);
                 // On my signal: Unleash hell.
                 (function hell() {
                     loop.step();
