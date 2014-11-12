@@ -55,28 +55,38 @@ function initPro() {
                 setTimeout(function() { 
                     for (i; i < total/10; i++) {
                         var options = {};
-                        if (Date.now() % 2 == 0)
-                            options.radius = 0.601;
+                        var mod = i % 10;
+                        if (mod < 4)
+                            options.radius = 0.28;
+                        else if (mod < 7)
+                            options.radius = 0.38;
                         else
-                            options.radius = 0.501;
+                            options.radius = 0.52;
                         add.random(options);
                     }
                 }, 0);
                 setTimeout(function() { for (i; i < total - (total/10)*2; i++) {
                     var options = {};
-                    if (Date.now() % 2 == 0)
-                        options.radius = 0.6;
-                    else
-                        options.radius = 0.5;
-                    add.random(options);
+                        var mod = i % 10;
+
+                        if (mod < 4)
+                            options.radius = 0.28;
+                        else if (mod < 7)
+                            options.radius = 0.38;
+                        else
+                            options.radius = 0.52;
+                        add.random(options);
                 }}, 200);
                 setTimeout(function() { for (i; i < total - (total/10)*3; i++) {
                     var options = {};
-                    if (Date.now() % 2 == 0)
-                        options.radius = 0.6;
-                    else
-                        options.radius = 0.5;
-                    add.random(options);
+                        var mod = i % 10;
+                        if (mod < 4)
+                            options.radius = 0.28;
+                        else if (mod < 7)
+                            options.radius = 0.38;
+                        else
+                            options.radius = 0.52;
+                        add.random(options);
                 }}, 400);
                 
                 // On my signal: Unleash hell.
@@ -116,7 +126,7 @@ function initPro() {
                         // height: 2,
                         // width:24.6,     // 740 / 30
                         x: 3.3,        // 200 / 30 / 2
-                        y:  27.2,
+                        y:  20,
                         height: 1,
                         width:7,     // 200 / 30
                         isStatic: true
@@ -252,7 +262,7 @@ function initPro() {
         
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
-            this.x = v.x || 0.5;
+            this.x = v.x || Math.floor(Math.random() * 4) + 1;;
             this.y = v.y || 0;
             this.angle = 0;
             this.color = helpers.randomColor();
