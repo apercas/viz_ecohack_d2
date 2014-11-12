@@ -50,9 +50,9 @@ function initCit() {
 
                 var i = 0;
                 var total = JSON.parse(localStorage.getItem('year_viz'));
-                    total = total.count_cit / 200000;
+                    total = total.count_cit / 80000;
                 setTimeout(function() { 
-                    for (i; i < total/10; i++) {
+                    for (i; i < total/3.3; i++) {
                         var options = {};
                         var mod = i % 10;
                         if (mod < 4 && mod !=2)
@@ -60,11 +60,11 @@ function initCit() {
                         else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
-                            options.radius = 0.6;
+                            options.radius = 0.58;
                         add.random(options);
                     }
                 }, 0);
-                setTimeout(function() { for (i; i < total - (total/10)*2; i++) {
+                setTimeout(function() { for (i; i < total/3.3; i++) {
                     var options = {};
                         var mod = i % 10;
                         if (mod < 4 && mod !=2)
@@ -72,10 +72,10 @@ function initCit() {
                         else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
-                            options.radius = 0.6;
+                            options.radius = 0.58;
                         add.random(options);
-                }}, 200);
-                setTimeout(function() { for (i; i < total - (total/10)*3; i++) {
+                }}, 400);
+                setTimeout(function() { for (i; i < total/3.3; i++) {
                     var options = {};
                         var mod = i % 10;
                         if (mod < 4 && mod !=2)
@@ -83,7 +83,7 @@ function initCit() {
                         else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
-                            options.radius = 0.6;
+                            options.radius = 0.58;
                         add.random(options);
                 }}, 800);
                 // On my signal: Unleash hell.
@@ -126,6 +126,7 @@ function initCit() {
                         y:  20,
                         height: 1,
                         width:7,     // 200 / 30
+                        rotate: 0.02,
                         isStatic: true
                     });
                 },
@@ -160,6 +161,7 @@ function initCit() {
             box: function(options) {
                 options.width = options.width || 0.5 + Math.random()*2;
                 options.height = options.height || 0.5 + Math.random()*2;
+                options.rotate = options.rotate || 0;
                 var shape = new Box(options);
                 shapes[shape.id] = shape;
                 box2d.addToWorld(shape);
@@ -202,7 +204,7 @@ function initCit() {
                     bodyDef.position.x = shape.x;
                     bodyDef.position.y = shape.y;
                     bodyDef.userData = shape.id;
-                    bodyDef.angle = shape.angle;
+                    bodyDef.angle = shape.rotate;
                 
                     return bodyDef;
                 }
@@ -260,9 +262,10 @@ function initCit() {
         var Shape = function(v) {
             this.id = Math.round(Math.random() * 1000000);
             this.x = v.x || Math.floor(Math.random() * 4) + 1;
-            this.y = v.y || 0;
+            this.y = v.y || (Math.random() + Math.random())/2;
+            this.rotate = v.rotate || 0;
             this.angle = 0;
-            this.color = helpers.randomColor();
+            // this.color = helpers.randomColor();
             this.center = { x: null, y: null };
             this.isStatic = v.isStatic || false;
             
@@ -282,8 +285,10 @@ function initCit() {
                 ctx.save();
                 ctx.translate(this.x * SCALE, this.y * SCALE);
                 ctx.translate(-(this.x) * SCALE, -(this.y) * SCALE);
+                ctx.rotate(this.rotate);
+                ctx.lineWidth   = 2;
                 ctx.strokeStyle = '#2f6593';
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle   = '#ffffff';
                 ctx.beginPath();
                 ctx.arc(this.x * SCALE, this.y * SCALE, this.radius * SCALE, 0, Math.PI * 2, true);
                 ctx.closePath();
@@ -298,6 +303,7 @@ function initCit() {
             Shape.call(this, options);
             this.width = options.width;
             this.height = options.height;
+            this.rotate = options.rotate;
             
             this.draw = function() {
             };
