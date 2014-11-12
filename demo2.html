@@ -26,6 +26,8 @@
          </ul>
       </div>
       <div>
+         <div id="total-citizens" class="score"><span></span>ocurrence records by citizens</div>
+         <div id="total-professionals" class="score"><span></span>ocurrence records by professionals</div>
    		<canvas id="box2d-demo" width="202" height="801" style="background-color:transparent;"></canvas>
    		<canvas id="box2d-demo2" width="202" height="801" style="background-color:transparent;"></canvas>
       </div>
@@ -34,8 +36,10 @@
 	<script src="demo2.js"></script>
 	<script src="demo2_.js"></script>
    <script type="text/javascript">
-      
-      
+      var tot_cit  = document.getElementById('total-citizens');
+      var tot_pro  = document.getElementById('total-professionals');
+      var list     = document.getElementById('years');
+
       window.data_orig = [
                     {
                       "year":2000,
@@ -108,9 +112,9 @@
                       "count_pro":4384066
                     }
                   ];
+      
       localStorage.setItem('year_viz', JSON.stringify(window.data_orig[window.data_orig.length - 1]));
-      var list     = document.getElementById('years');
-      var canva    = document.getElementsByTagName('canvas');
+
       list.onclick = function(e) {changeYear(e);}
 
       var changeYear = function(e) {
@@ -124,15 +128,23 @@
          for (var i = 0; i < list.children.length; i++)  list.children[i].classList.remove('selected')
          e.target.classList.toggle('selected');
       }
-      var run = function() {
-         initPro();
-         initCit();
-      }
+
       var updateLocalYear = function(e) {
          var pos = Array.prototype.indexOf.call(list.children,document.getElementsByClassName('selected')[0]);
          localStorage.setItem('year_viz', JSON.stringify(window.data_orig[pos]));
       }
 
+      var initValues = function() {
+         var values = JSON.parse(localStorage.getItem('year_viz'));
+         tot_cit.children[0].innerHTML = '<span>' + values.count_cit.toLocaleString()  + '</span>';
+         tot_pro.children[0].innerHTML = '<span>' + values.count_pro.toLocaleString()  + '</span>';
+      }
+
+      var run = function() {
+         initValues();
+         initPro();
+         initCit();
+      }
       run();
    </script>
 </body>

@@ -51,6 +51,7 @@ function initPro() {
                 var i = 0;
                 var total = JSON.parse(localStorage.getItem('year_viz'));
                     total = total.count_pro / 200000;
+                
                 setTimeout(function() { 
                     for (i; i < total/10; i++) {
                         var options = {};
@@ -77,13 +78,7 @@ function initPro() {
                         options.radius = 0.5;
                     add.random(options);
                 }}, 400);
-                // On my signal: Unleash hell.
-                (function hell() {
-                    loop.step();
-                    loop.update();
-                    loop.draw();
-                    requestAnimFrame(hell);
-                })();
+                
                 // On my signal: Unleash hell.
                 (function hell() {
                     loop.step();
@@ -179,7 +174,7 @@ function initPro() {
             create: {
                 world: function() {
                     world = new b2World(
-                        new b2Vec2(0,30)    //gravity
+                        new b2Vec2(0,20)    //gravity
                         ,true                 //allow sleep
                     );
                 },
@@ -234,7 +229,7 @@ function initPro() {
                     }
                 }
             },
-            draw: function() {            
+            draw: function() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 for (var i in shapes) {
                     shapes[i].draw();
@@ -302,6 +297,6 @@ function initPro() {
         };
         Box.prototype = Shape;
         
-        init.start('box2d-demo2');
+        setTimeout(function(){init.start('box2d-demo2');},500);
     })();
 }
