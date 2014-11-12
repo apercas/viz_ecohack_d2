@@ -51,6 +51,7 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	min-width: 960px;
 }
 
 section {
