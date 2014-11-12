@@ -56,9 +56,9 @@ function initPro() {
                     for (i; i < total/10; i++) {
                         var options = {};
                         var mod = i % 10;
-                        if (mod < 4)
+                        if (mod < 4 && mod !=2)
                             options.radius = 0.28;
-                        else if (mod < 7)
+                        else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
                             options.radius = 0.52;
@@ -69,9 +69,9 @@ function initPro() {
                     var options = {};
                         var mod = i % 10;
 
-                        if (mod < 4)
+                        if (mod < 4 && mod !=2)
                             options.radius = 0.28;
-                        else if (mod < 7)
+                        else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
                             options.radius = 0.52;
@@ -80,14 +80,14 @@ function initPro() {
                 setTimeout(function() { for (i; i < total - (total/10)*3; i++) {
                     var options = {};
                         var mod = i % 10;
-                        if (mod < 4)
+                        if (mod < 4 && mod !=2)
                             options.radius = 0.28;
-                        else if (mod < 7)
+                        else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
                             options.radius = 0.52;
                         add.random(options);
-                }}, 400);
+                }}, 800);
                 
                 // On my signal: Unleash hell.
                 (function hell() {
