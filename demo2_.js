@@ -52,7 +52,7 @@ function initPro() {
                 var total = JSON.parse(localStorage.getItem('year_viz'));
                     total = total.count_pro / 80000;
                 setTimeout(function() { 
-                    for (i; i < total/3.3; i++) {
+                    for (i; i < total/3; i++) {
                         var options = {};
                         var mod = i % 10;
                         if (mod < 4 && mod !=2)
@@ -60,32 +60,23 @@ function initPro() {
                         else if (mod < 7 && mod !=2)
                             options.radius = 0.38;
                         else
-                            options.radius = 0.6;
+                            options.radius = 0.58;
                         add.random(options);
                     }
                 }, 0);
-                setTimeout(function() { for (i; i < total/3.3; i++) {
-                    var options = {};
-                        var mod = i % 10;
-                        if (mod < 4 && mod !=2)
-                            options.radius = 0.28;
-                        else if (mod < 7 && mod !=2)
-                            options.radius = 0.38;
-                        else
-                            options.radius = 0.6;
-                        add.random(options);
-                }}, 400);
-                setTimeout(function() { for (i; i < total/3.3; i++) {
-                    var options = {};
-                        var mod = i % 10;
-                        if (mod < 4 && mod !=2)
-                            options.radius = 0.28;
-                        else if (mod < 7 && mod !=2)
-                            options.radius = 0.38;
-                        else
-                            options.radius = 0.6;
-                        add.random(options);
-                }}, 800);
+                setTimeout(function() {
+                    for (i; i < total/3; i++) {
+                        var options = {};
+                            var mod = i % 10;
+                            if (mod < 4 && mod !=2)
+                                options.radius = 0.28;
+                            else if (mod < 7 && mod !=2)
+                                options.radius = 0.38;
+                            else
+                                options.radius = 0.58;
+                            add.random(options);
+                    }
+                }, 500);
                 // On my signal: Unleash hell.
                 (function hell() {
                     loop.step();
